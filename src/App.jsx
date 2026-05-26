@@ -1,6 +1,7 @@
 import Reps from './Reps'
 import RepPerformance from './RepPerformance'
 import LenderSubmit from './LenderSubmit'
+import CapitalInfusion from './CapitalInfusion'
 import { useState, useEffect } from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -128,6 +129,26 @@ export default function App() {
 
   const fmt = (n) => n >= 1000000 ? `$${(n/1000000).toFixed(1)}M` : n >= 1000 ? `$${(n/1000).toFixed(0)}K` : `$${n.toFixed(0)}`
 
+  const [page, setPage] = useState('waymo')
+
+  if (page === 'ci') return (
+    <div className="app">
+      <header className="header">
+        <div className="header-left">
+          <div className="logo">📊</div>
+          <div>
+            <h1>Capital Infusion</h1>
+            <p>Rep & Lead Source Analytics</p>
+          </div>
+        </div>
+        <div className="header-right">
+          <button className="tab active" onClick={() => setPage('waymo')} style={{marginRight:8}}>← Waymo CRM</button>
+        </div>
+      </header>
+      <main className="main"><CapitalInfusion /></main>
+    </div>
+  )
+
   return (
     <div className="app">
       {/* Header */}
@@ -141,7 +162,7 @@ export default function App() {
         </div>
         <div className="header-right">
           <input className="search" placeholder="🔍 Search all data..." value={search} onChange={e => setSearch(e.target.value)} />
-          <div className="badge">Waymo CRM</div>
+          <button className="tab" onClick={() => setPage('ci')} style={{marginLeft:8}}>CI Analytics →</button>
         </div>
       </header>
 
