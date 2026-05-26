@@ -35,11 +35,30 @@ export default function App() {
   const [analytics, setAnalytics] = useState(null)
   const [tab, setTab] = useState('overview')
   const [search, setSearch] = useState('')
+  const [page, setPage] = useState('waymo')
 
   useEffect(() => {
     fetch('/data.json').then(r => r.json()).then(setData)
     fetch('/analytics.json').then(r => r.json()).then(setAnalytics)
   }, [])
+
+  if (page === 'ci') return (
+    <div className="app">
+      <header className="header">
+        <div className="header-left">
+          <div className="logo">📊</div>
+          <div>
+            <h1>Capital Infusion</h1>
+            <p>Rep & Lead Source Analytics</p>
+          </div>
+        </div>
+        <div className="header-right">
+          <button className="tab active" onClick={() => setPage('waymo')} style={{marginLeft:8}}>← Waymo CRM</button>
+        </div>
+      </header>
+      <main className="main"><CapitalInfusion /></main>
+    </div>
+  )
 
   if (!data) return <div className="loading"><div className="spinner" />Loading dashboard...</div>
 
@@ -128,26 +147,6 @@ export default function App() {
   )
 
   const fmt = (n) => n >= 1000000 ? `$${(n/1000000).toFixed(1)}M` : n >= 1000 ? `$${(n/1000).toFixed(0)}K` : `$${n.toFixed(0)}`
-
-  const [page, setPage] = useState('waymo')
-
-  if (page === 'ci') return (
-    <div className="app">
-      <header className="header">
-        <div className="header-left">
-          <div className="logo">📊</div>
-          <div>
-            <h1>Capital Infusion</h1>
-            <p>Rep & Lead Source Analytics</p>
-          </div>
-        </div>
-        <div className="header-right">
-          <button className="tab active" onClick={() => setPage('waymo')} style={{marginRight:8}}>← Waymo CRM</button>
-        </div>
-      </header>
-      <main className="main"><CapitalInfusion /></main>
-    </div>
-  )
 
   return (
     <div className="app">
