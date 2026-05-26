@@ -1,4 +1,5 @@
 import Reps from './Reps'
+import RepPerformance from './RepPerformance'
 import { useState, useEffect } from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -29,11 +30,13 @@ function Section({ title, children }) {
 
 export default function App() {
   const [data, setData] = useState(null)
+  const [analytics, setAnalytics] = useState(null)
   const [tab, setTab] = useState('overview')
   const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch('/data.json').then(r => r.json()).then(setData)
+    fetch('/analytics.json').then(r => r.json()).then(setAnalytics)
   }, [])
 
   if (!data) return <div className="loading"><div className="spinner" />Loading dashboard...</div>
@@ -143,7 +146,7 @@ export default function App() {
 
       {/* Tabs */}
       <nav className="tabs">
-        {['overview','leads','pipeline','funding','tables','reps'].map(t => (
+        {['overview','leads','pipeline','funding','reps','performance','tables'].map(t => (
           <button key={t} className={`tab${tab===t?' active':''}`} onClick={() => setTab(t)}>
             {t.charAt(0).toUpperCase()+t.slice(1)}
           </button>
@@ -427,6 +430,9 @@ export default function App() {
 
         {/* ── REPS ── */}
         {tab === 'reps' && <Reps />}
+
+        {/* ── PERFORMANCE ── */}
+        {tab === 'performance' && <RepPerformance analytics={analytics} />}
 
         {/* ── TABLES ── */}
         {tab === 'tables' && (
