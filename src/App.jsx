@@ -1,5 +1,6 @@
 import Reps from './Reps'
 import RepPerformance from './RepPerformance'
+import LenderSubmit from './LenderSubmit'
 import { useState, useEffect } from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -146,7 +147,7 @@ export default function App() {
 
       {/* Tabs */}
       <nav className="tabs">
-        {['overview','leads','pipeline','funding','reps','performance','tables'].map(t => (
+        {['overview','leads','pipeline','funding','reps','performance','submit','tables'].map(t => (
           <button key={t} className={`tab${tab===t?' active':''}`} onClick={() => setTab(t)}>
             {t.charAt(0).toUpperCase()+t.slice(1)}
           </button>
@@ -433,6 +434,9 @@ export default function App() {
 
         {/* ── PERFORMANCE ── */}
         {tab === 'performance' && <RepPerformance analytics={analytics} />}
+
+        {/* ── SUBMIT ── */}
+        {tab === 'submit' && <LenderSubmit />}
 
         {/* ── TABLES ── */}
         {tab === 'tables' && (
