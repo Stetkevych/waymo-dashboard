@@ -4,8 +4,8 @@ const fmt = (n) => {
   if (n === 0) return '$0'
   const abs = Math.abs(n)
   const sign = n < 0 ? '-' : ''
-  if (abs >= 1000000) return `${sign}$${(abs/1000000).toFixed(1)}M`
-  if (abs >= 1000) return `${sign}$${(abs/1000).toFixed(0)}K`
+  if (abs >= 1000000) return `${sign}$${(abs/1000000).toFixed(2)}M`
+  if (abs >= 1000) return `${sign}$${(abs/1000).toFixed(1)}K`
   return `${sign}$${abs.toFixed(0)}`
 }
 const pct = (a, b) => b > 0 ? `${((a/b)*100).toFixed(1)}%` : '—'
