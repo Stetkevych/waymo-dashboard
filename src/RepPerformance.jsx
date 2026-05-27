@@ -82,11 +82,11 @@ export default function RepPerformance({ analytics }) {
                   <td style={{position:'sticky',left:0,background:'#0a0014',fontWeight:700,zIndex:1,padding:'10px 14px'}}>{r.name}</td>
                   <td>{r.net_calls}</td>
                   <td style={{color:'#06b6d4',fontWeight:600}}>{r.apps}</td>
-                  <td style={{color:r.call_to_app>30?'#22c55e':r.call_to_app>15?'#eab308':'#f43f5e',fontWeight:600}}>{r.call_to_app}%</td>
+                  <td style={{color:r.call_to_app>30?'#22c55e':r.call_to_app>15?'#eab308':'#f43f5e',fontWeight:600}}>{r.call_to_app != null ? `${r.call_to_app}%` : '—'}</td>
                   <td style={{color:'#8b5cf6'}}>{r.approvals}</td>
-                  <td style={{color:r.app_to_approval>50?'#22c55e':r.app_to_approval>25?'#eab308':'#f43f5e',fontWeight:600}}>{r.app_to_approval > 0 ? `${r.app_to_approval}%` : '—'}</td>
+                  <td style={{color:r.app_to_approval>50?'#22c55e':r.app_to_approval>25?'#eab308':'#f43f5e',fontWeight:600}}>{r.app_to_approval != null ? `${r.app_to_approval}%` : '—'}</td>
                   <td style={{color:'#eab308',fontWeight:600}}>{r.funded > 0 ? r.funded : '—'}</td>
-                  <td style={{color:r.approval_to_fund>50?'#22c55e':r.approval_to_fund>0?'#eab308':'#94a3b8',fontWeight:600}}>{r.approval_to_fund > 0 ? `${r.approval_to_fund}%` : '—'}</td>
+                  <td style={{color:r.approval_to_fund>50?'#22c55e':r.approval_to_fund>0?'#eab308':'#94a3b8',fontWeight:600}}>{r.approval_to_fund != null ? `${r.approval_to_fund}%` : '—'}</td>
                   <td style={{color:'#a855f7',fontWeight:600}}>{r.fund_amount > 0 ? fmt(r.fund_amount) : '—'}</td>
                   <td style={{color:'#c4b5fd'}}>{r.avg_positions > 0 ? r.avg_positions : '—'}</td>
                   <td>{r.avg_amount > 0 ? fmt(r.avg_amount) : '—'}</td>
